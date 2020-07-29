@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Symfony Sneakers{% endblock %}</title>
+        {% block stylesheets %}
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href="{{ asset('assets/style.css') }}" rel="stylesheet" />        
+        {% endblock %}
+    </head>
+
+    <body>
+    <nav>
+    {% if app.user %}
+    Connecté en tant que 
+        {{ app.user }}
+            <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                        {% endif %}
+    </nav>
+    
+        {% block body %}
+                <h1 class="text-center p-5 bg-light" style="font-family: 'Great Vibes', cursive;">Symfony Sneakers</h1>
+
+            <div class="container">
+            
+            {% for produit in produits %}
+                <div class="row text-center d-flex justify-content-center align-items-center my-4">
+                    
+                    <div class='col-12 my-3'>
+                    <h2>{{produit.nom}}</h2>
+                    <p class="text-warning">{{produit.categorie}}</p>
+                    </div>
+
+                    <div class="col-6 d-flex justify-content-center align-self-start ">
+                        <img src={{produit.image}} class="img-fluid mb-5" alt="">
+                    </div>
+
+                    <div class="col-6 d-flex justify-content-center align-items-center flex-column">
+                    <p class="bg-light p-2">{{produit.description}}</p>
+                    <p class="font-weight-bold">{{produit.prix}} €</p>
+                    <small><i> Stock : {{produit.stock}} pièces dispo</i></small><br>
+                    <a href="/{{ produit.id }}"><button type="button" class="btn btn-outline-warning my-3">Voir</button></a>
+                    </div>
+
+                    <hr class="w-75">
+                    
+                </div>
+               
+            {% endfor %}
+      
+                </div>
+            </div>
+        
+        {% endblock %}
+
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        {% endblock %}
+    </body>
+</html>

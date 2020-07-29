@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-5">Registration</h1>
+<div class="container">
+    <div class="row bg-light">
+        <div class="col-8 offset-2 p-5">
+        {{ form_start(form) }}
+        {{ form_row(form.username, {'label': 'Pseudo', 'attr': {'placeholder':'votre pseudo'}}) }}
+        {{ form_row(form.email, {'attr': {'placeholder':'email@domain.com'}}) }}
+        {{ form_row(form.password, {'label': 'Mot de Passe', 'help' : 'Saisir au moins 5 caractères'}) }}
+        {{ form_end(form) }}
+        
+        </div>
+    
+    </div>
+</div>
+
+{% endblock %}
